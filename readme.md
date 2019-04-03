@@ -20,6 +20,7 @@ docker是什么
 
   cons:
   1. docker可以看作是进程隔离，隔离性不如VMs严格
+  2. 容器只能运行与宿主机相同或相似的操作系统
 
 docker历史
 ========
@@ -61,9 +62,14 @@ docker基础
     docker container ls
     docker container ls -p
     docker run -d -p 4000:80 [imagename]
+    // -i 保持标准输入打开，-t为创建的容器分配一个伪ttp终端
+    docker run --name [container name] -i -t [imagename] [command to run]
+    docker attach [contanerid/name]
     docker container stop [imagename]
     docker container rm [imagename]
     docker logs [container id]
+    // -f与tail -f中的作用一致, -t给日志加上时间戳
+    docker logs -f [containerid]
     // enter the container
     docker exec -it <container id> /bin/bash
     ```
