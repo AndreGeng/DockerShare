@@ -63,11 +63,16 @@ docker基础
     docker run -d -p 4000:80 [imagename]
     docker container stop [imagename]
     docker container rm [imagename]
+    docker logs [container id]
+    // enter the container
+    docker exec -it <container id> /bin/bash
     ```
   3. 服务(service)
-    1. docker-compose.yml, [YAML语法简介](http://www.ruanyifeng.com/blog/2016/07/yaml.html)
+    1. 服务是生产环境中的容器。
+    2. docker-compose.yml, [YAML语法简介](http://www.ruanyifeng.com/blog/2016/07/yaml.html)
     ```
     docker service ls
+    docker service ps [service id]
     ```
   4. 集群(swarm)
     ```
@@ -87,6 +92,10 @@ docker基础
     docker tag [imagename] username/repo:tag
     docker push username/repo:tag
     ```
++ demo
+  1. docker化node web app
+  2. 服务化node web app
+  3. 集群部署
 
 
 
