@@ -49,7 +49,8 @@ docker基础
 + 核心概念
   1. 镜像(Image)
     1. image是一个可执行包，包含程序运行所需要的一切(代码，运行时，库文件，环境变量，配置文件, etc.)
-    2. Dockerfile
+    2. 写时复制(copy on write)
+    3. Dockerfile
     ```
     docker pull [imagename]
     docker run -d -p 4000:80 [imagename]
@@ -94,6 +95,9 @@ docker基础
   6. 仓库(Repository)
     ```
     docker build -t [imagename] [directory contains Dockerfile]
+    docker build --no-cache -t [imagename] [directory contains Dockerfile]
+    // 可以用来查看镜像的构建历史记录
+    docker history [containerid]
     docker login [registry]
     docker tag [imagename] username/repo:tag
     docker push username/repo:tag
