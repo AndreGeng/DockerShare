@@ -106,6 +106,7 @@ docker基础
   1. docker化node web app
   2. 服务化node web app
   3. 集群部署
+  4. dockerized neovim
 
 
 
