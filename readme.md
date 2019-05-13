@@ -30,6 +30,8 @@ docker历史
 
 docker基础
 ========
++ Docker架构
+  ![docker c/s架构](https://km.meituan.net/117304966.png?contentType=2&contentId=111994687&attachmentId=124485680&originUrl=https://km.meituan.net/117304966.png&token=eAHjYBT4drVK4fSzK59X6xpJJefn6hUn5mWXJmbqZZbopSam6CVnliSmpOZYKViYJRubWaakmaUlJZmYGSUnpaRYaqWYpFqmGlgmJ6cYOVkofD77fuo6XQ1GI4KKLYC2OrB4vNnbfXWlbpSCaYq5pbFBckpaipa5SWJKsmWyQVqqgVlacmKyuXGqqQUA2Jg6XQ**eAENycEBwCAIA8CViBFxHSGw_wjtfa_gbuKpJl2mmpO4SSth3eDBDtFkHZvTg4j-m6s6Hx4_NFwRmQ&template=0&isDownload=false&isNewContent=false)
 + Docker版本
   1. 社区版(Community Edition, 简称CE)
   2. 企业版(Enterprise Edition, 简称EE)
@@ -50,36 +52,47 @@ docker基础
   1. 镜像(Image)
     1. image是一个可执行包，包含程序运行所需要的一切(代码，运行时，库文件，环境变量，配置文件, etc.)
     2. 写时复制(copy on write)
-    3. Dockerfile
+    3. 用户镜像与顶层镜像
+      3.1 andregeng/node-docker-demo
+      3.2 ubuntu
+    4. Dockerfile
+      4.1 构建缓存
     ```
     docker pull [imagename]
     docker run -d -p 4000:80 [imagename]
     docker image ls
     docker rm [imagename]
+    docker build -t [imagename] [directory contains Dockerfile]
+    # 构建历史
+    docker history [imagename]
     ```
   2. 容器(Container)
     1. 容器是image的运行实例。
     ```
     docker container ls
-    docker container ls -p
+    docker container ls -q
     docker run -d -p 4000:80 [imagename]
     // -i 保持标准输入打开，-t为创建的容器分配一个伪ttp终端
     docker run --name [container name] -i -t [imagename] [command to run]
     docker attach [contanerid/name]
     docker container stop [imagename]
     docker container rm [imagename]
-    docker logs [container id]
+    docker container logs [container id]
+    docker container top [container id]
     // -f与tail -f中的作用一致, -t给日志加上时间戳
-    docker logs -f [containerid]
+    docker container logs -f [containerid]
     // enter the container
     docker exec -it <container id> /bin/bash
     ```
   3. 服务(service)
-    1. 服务是生产环境中的容器。
+    1. 服务是生产环境中的容器。一个服务可能是一组container
     2. docker-compose.yml, [YAML语法简介](http://www.ruanyifeng.com/blog/2016/07/yaml.html)
     ```
+    docker service create --name node-docker-demo -p 8080:80 --replicas=5 [imagename]
+    docker service rm [servicename]
     docker service ls
     docker service ps [service id]
+    docker service rm [service id]
     ```
   4. 集群(swarm)
     ```
