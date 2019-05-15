@@ -50,13 +50,13 @@ docker基础
   [Docker Desktop for Mac vs. Docker Toolbox](https://docs.docker.com/docker-for-mac/docker-toolbox/)
 + 核心概念
   1. 镜像(Image)
-    1. image是一个可执行包，包含程序运行所需要的一切(代码，运行时，库文件，环境变量，配置文件, etc.)
-    2. 写时复制(copy on write)
-    3. 用户镜像与顶层镜像
-      3.1 andregeng/node-docker-demo
-      3.2 ubuntu
-    4. Dockerfile
-      4.1 构建缓存
+    * image是一个可执行包，包含程序运行所需要的一切(代码，运行时，库文件，环境变量，配置文件, etc.)
+    * 写时复制(copy on write)
+    * 用户镜像与顶层镜像
+      1. andregeng/node-docker-demo
+      2. ubuntu
+    * Dockerfile
+      1. 构建缓存
     ```
     docker pull [imagename]
     docker run -d -p 4000:80 [imagename]
@@ -84,28 +84,7 @@ docker基础
     // enter the container
     docker exec -it <container id> /bin/bash
     ```
-  3. 服务(service)
-    1. 服务是生产环境中的容器。一个服务可能是一组container
-    2. docker-compose.yml, [YAML语法简介](http://www.ruanyifeng.com/blog/2016/07/yaml.html)
-    ```
-    docker service create --name node-docker-demo -p 8080:80 --replicas=5 [imagename]
-    docker service rm [servicename]
-    docker service ls
-    docker service ps [service id]
-    docker service rm [service id]
-    ```
-  4. 集群(swarm)
-    ```
-    docker swarm init
-    docker swarm leave --force
-    docker node ls
-    ```
-  5. 技术栈(stack)
-    ```
-    docker stack deploy -c docker-compose.yml [stackname]
-    docker stack rm [stackname]
-    ```
-  6. 仓库(Repository)
+  3. registry & 仓库(Repository)
     ```
     docker build -t [imagename] [directory contains Dockerfile]
     docker build --no-cache -t [imagename] [directory contains Dockerfile]
@@ -115,11 +94,34 @@ docker基础
     docker tag [imagename] username/repo:tag
     docker push username/repo:tag
     ```
-+ demo
-  1. docker化node web app
-  2. 服务化node web app
-  3. 集群部署
-  4. dockerized neovim
++ Demo
+  1. dockerize nodejs web app
+  2. 容器互联docker network
+  3. 数据共享docker volumn
++ 生产环境下的部署
+  1. 集群(swarm)
+    ```
+    docker swarm init
+    docker swarm leave --force
+    docker node ls
+    ```
+  2. 服务(service)
+    1. 服务是生产环境中的容器。一个服务可能是一组container
+    2. docker-compose.yml, [YAML语法简介](http://www.ruanyifeng.com/blog/2016/07/yaml.html)
+    ```
+    docker service create --name node-docker-demo -p 8080:80 --replicas=5 [imagename]
+    docker service rm [servicename]
+    docker service ls
+    docker service ps [service id]
+    docker service rm [service id]
+    ```
+  3. 技术栈(stack)
+    ```
+    docker stack deploy -c docker-compose.yml [stackname]
+    docker stack rm [stackname]
+    ```
++ 实验experiment
+  1. dockerized neovim
 
 
 
