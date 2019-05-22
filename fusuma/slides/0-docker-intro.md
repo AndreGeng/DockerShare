@@ -93,7 +93,7 @@ docker发展过程
 ==========
 + 2013.3 docker发布, github pr贡献增长迅猛,下载量超10万次
 + 2013.10 dotcloud(已更名为Docker Inc. )
-+ 2017 发布docker ce/ee ([ce vs ee](https://boxboat.com/2018/12/07/docker-ce-vs-docker-ee/))
++ 2017 发布docker ce / ee ([ce vs ee](https://boxboat.com/2018/12/07/docker-ce-vs-docker-ee/))
 
 ---
 
