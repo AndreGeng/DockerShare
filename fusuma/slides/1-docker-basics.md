@@ -16,8 +16,14 @@ docker架构
 
 ---
 
-<!--note 
+<!-- note 
 (代码，运行时，库文件，环境变量，配置文件, etc.)
+最下层是bootfs, 它主负责image的装载，做为用户我们几乎是不用和它打交道的，当image装载到内存以后，bootfs这层会被卸载掉
+接着是base image, 一般会是一个操作系统。但任何一个image都可以拿来当base image的，比方说我们可以把一个安装好了node环境的image当成base
+上面的话就是我们对base image的一些更改，装我们应用的运行环境, 每一条操作指令都会行成一个新的层，而且这些层都是只读层
+
+介绍下写时复制, device driver
+这个是docker image的一个大概工作流程
 -->
 镜像
 ==
@@ -71,6 +77,11 @@ CMD [ "npm", "start" ]
 ---
 
 <!-- classes: page pre-max-w-50 -->
+
+<!-- note 
+docker run --name test-alpine -it alpine /bin/sh
+-->
+
 容器
 ==
 
@@ -86,10 +97,11 @@ docker container logs -f [container id/name]
 
 ---
 
-<!--note 
+<!-- classes: page pre-max-w-50 -->
+
+<!-- note 
 演示下docker hub的页面
 -->
-<!-- classes: page pre-max-w-50 -->
 registry & 仓库(Repository)
 =========================
 
@@ -101,6 +113,13 @@ docker push username/repo:tag
 
 ---
 
+<!-- note 
+docker是推荐一个容器里只运行一个进程
+我们一个应用一般都会由一组服务组成，那就需要每个服务运行在一个container里. 
+container之间通信，一般是通过把它们放到一个network里来进行的
+
+volumn的作用是持久化数据么，我们在container可写层做的更改都是临时性的，当container重启时会消失的。要想持久会数据一般方法是通过volumn
+-->
 network & volumn
 ================
 
@@ -109,10 +128,12 @@ network & volumn
 
 ---
 
-<!--note 
-
--->
 <!-- classes: page pre-max-w-50 -->
+
+<!-- note 
+我们一个应用一般由多个服务构成的么，那起每个服务都去跑docker run也比较麻烦
+所以这个工具可以让我们以声明性的方式，指明我们要启动的那些container
+-->
 docker-compose
 ==============
 

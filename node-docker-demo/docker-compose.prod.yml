@@ -1,7 +1,10 @@
 version: "3"
 services:
   web:
+    container_name: node_web
     image: andregeng/node-docker-demo:v2
+    ports:
+      - "8088:80"
     deploy:
       replicas: 3
       resources:
@@ -10,11 +13,13 @@ services:
           memory: 50M
       restart_policy:
         condition: on-failure
-    ports:
-      - "8088:80"
     networks:
       - webnet
   redis:
     image: "redis:alpine"
+    networks:
+      - webnet
+    volumes:
+      - ./data:/data
 networks:
   webnet:

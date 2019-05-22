@@ -1,3 +1,7 @@
+<!-- note
+1. 生产环境部署之前，需要先把image推到公共仓库
+  当然你打个tar包然后，上传到服务器上去也行
+-->
 生产环境部署
 ============
 
@@ -26,6 +30,11 @@ swarm
 </div>
 
 ---
+<!-- note
+docker stack deploy -c docker-compose.yml node-docker-demo
+docker stack ps node-docker-demo
+docker stack rm node-docker-demo
+-->
 
 service & stack
 ===============

@@ -73,7 +73,7 @@ PROS & CONS
 </div>
 
 ---
-<!--note 
+<!-- note 
 Docker版本
   1. 社区版(Community Edition, 简称CE)
   2. 企业版(Enterprise Edition, 简称EE)
