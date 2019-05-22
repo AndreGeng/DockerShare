@@ -4,8 +4,6 @@ docker是什么
   - 操作系统，库，组件..旧模块还可能于当前环境不兼容
   - 不同硬件/软件组合多种多样
   - 换台机子还得再来一次
-+ 期望
-  - 把软件和环境打包在一起安装
 + 解决方案
   1. 虚拟机(VMs, e.g. VMWare/openstack)
   2. Linux容器
@@ -20,7 +18,6 @@ docker是什么
 
   cons:
   1. docker可以看作是进程隔离，隔离性不如VMs严格
-  2. 容器只能运行与宿主机相同或相似的操作系统
 
 docker历史
 ========
@@ -31,7 +28,7 @@ docker历史
 docker基础
 ========
 + Docker架构
-  ![docker c/s架构](https://km.meituan.net/117304966.png?contentType=2&contentId=111994687&attachmentId=124485680&originUrl=https://km.meituan.net/117304966.png&token=eAHjYBT4drVK4fSzK59X6xpJJefn6hUn5mWXJmbqZZbopSam6CVnliSmpOZYKViYJRubWaakmaUlJZmYGSUnpaRYaqWYpFqmGlgmJ6cYOVkofD77fuo6XQ1GI4KKLYC2OrB4vNnbfXWlbpSCaYq5pbFBckpaipa5SWJKsmWyQVqqgVlacmKyuXGqqQUA2Jg6XQ**eAENycEBwCAIA8CViBFxHSGw_wjtfa_gbuKpJl2mmpO4SSth3eDBDtFkHZvTg4j-m6s6Hx4_NFwRmQ&template=0&isDownload=false&isNewContent=false)
+  ![docker c/s架构](https://docs.docker.com/engine/images/architecture.svg)
 + Docker版本
   1. 社区版(Community Edition, 简称CE)
   2. 企业版(Enterprise Edition, 简称EE)
@@ -93,11 +90,24 @@ docker基础
     docker login [registry]
     docker tag [imagename] username/repo:tag
     docker push username/repo:tag
+
+    // you can also build image into a tar file, then load it in your server
+    docker image save -o image-name.tar group-name/image-name
+    docker load < image-name.tar
     ```
+  4. docker network
+    1. bridge
+    2. overlay
+    3. macvlan
+  5. docker volumn
+    1. volumn
+    2. bind mounts
+    3. tmpfs
 + Demo
   1. dockerize nodejs web app
   2. 容器互联docker network
   3. 数据共享docker volumn
+  4. debug node within container
 + 生产环境下的部署
   1. 集群(swarm)
     ```
